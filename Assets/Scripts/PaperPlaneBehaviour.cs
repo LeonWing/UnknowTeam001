@@ -116,7 +116,7 @@ public class PaperPlaneBehaviour : MonoBehaviour {
 			Direction = 0;
 
 		//定义位移量为方向*水平速度参数（从游戏控制器抓取）*帧时间
-		Motion = Direction * Manager.HorizontalSpeed * Time.deltaTime;
+		Motion = Direction * Manager.HorizontalSpeed;
 
 		//测试用
 		//print (Mathf.Abs(transform.position.x+Motion) + ", "+HorizontalBoundary+", "+(Mathf.Abs(transform.position.x+Motion)<HorizontalBoundary));
@@ -174,4 +174,8 @@ public class PaperPlaneBehaviour : MonoBehaviour {
 		//将本帧技术时的控制值赋给LastInputAxis，计算下一帧缓和曲线梯度的参数
 		LastInputAxis = InputAxis;
 	}
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+    }
 }

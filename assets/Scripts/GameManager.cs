@@ -5,8 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public float FallSpeed=10.0f;//下落速度调整值
-	public float HorizontalSpeed=10.0f;//水平速度调整值
-	public float HorizontalBoundary=40.0f;//屏幕边界（中心位移量）
+	public float HorizontalBoundary=100.0f;//屏幕边界（中心位移量）
 	public float ScreenHorizontalBoundary=45.0f;
 	public float ScreenVerticalBoundary=80.0f;
 	public GameObject Plane;//飞机对象
@@ -15,7 +14,18 @@ public class GameManager : MonoBehaviour {
 	public GameObject Block=null;
 	private GameObject LastBlock;
 
-	private float verticalSpeed;//垂直速度，用于表示当前滚屏速度
+    private float horizontalSpeed;//水平速度
+
+    public float HorizontalSpeed
+    {
+        get
+        {
+            return horizontalSpeed;
+        }
+    }
+
+
+    private float verticalSpeed;//垂直速度，用于表示当前滚屏速度
 	private double distance;
 
 	public float VerticalSpeed
@@ -49,7 +59,6 @@ public class GameManager : MonoBehaviour {
 		FreshParameters ();
 		//利用生成器开始生成Block
 		BlockManager ();
-		
 	}
 
 	//刷新游戏中各种参数的过程
@@ -59,6 +68,8 @@ public class GameManager : MonoBehaviour {
 		verticalSpeed = Time.deltaTime * FallSpeed * PlaneScript.OneSpeed.y;
 		//累加距离
 		distance = distance + verticalSpeed;
+        //刷新水平速度
+        horizontalSpeed = PlaneScript.OneSpeed.x;
 
 	}
 

@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BlockController.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PaperPlaneBehaviour.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
   </ItemGroup>
