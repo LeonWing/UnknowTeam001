@@ -174,8 +174,13 @@ public class PaperPlaneBehaviour : MonoBehaviour {
 		//将本帧技术时的控制值赋给LastInputAxis，计算下一帧缓和曲线梯度的参数
 		LastInputAxis = InputAxis;
 	}
+
+	//当碰撞发生时，重置飞机位置，同时调用Manager的oncrash委托
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+		transform.position=new Vector3(-30,30,-20);
+		transform.eulerAngles = new Vector3 (-130, 0, -90);
+		Manager.oncrash ();
     }
 }
