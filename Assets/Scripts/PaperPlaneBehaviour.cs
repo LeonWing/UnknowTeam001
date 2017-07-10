@@ -183,7 +183,8 @@ public class PaperPlaneBehaviour : MonoBehaviour {
 		transform.eulerAngles = new Vector3 (-130, 0, -90);
 		//复位Step结构体，修复飞机坠毁后重新开始造成的转角不对bug
 		Step.step = 0;
-		Step.d = 1;
-		Manager.oncrash ();
+		Step.d =0;
+        LastInputAxis = 0;
+        Manager.oncrash ();
     }
 }
