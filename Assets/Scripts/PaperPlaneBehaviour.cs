@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PaperPlaneBehaviour : MonoBehaviour {
 
+    public float InitRotation = 20.0f;//初始转向角
     public float RotateSpeed = 200.0f;//转向速度
 	public int SelfRotateSpeed=2;//自转速度
 	private float LastInputAxis=0;//前一帧控制量，用来计算控制缓和曲线梯度
@@ -28,7 +29,9 @@ public class PaperPlaneBehaviour : MonoBehaviour {
     {
         //飞机初始位置
         transform.localEulerAngles = new Vector3(230, 0, 270);
-		Step.step = 0;
+        //初始角度调整度
+        transform.RotateAround(transform.position, new Vector3(0, 0, 1), InitRotation);
+        Step.step = 0;
 		Step.d = 1;
 		if (SelfRotateSpeed < 0)
 			SelfRotateSpeed = 0;
@@ -181,8 +184,9 @@ public class PaperPlaneBehaviour : MonoBehaviour {
         //Destroy(gameObject);
 		transform.position=new Vector3(-30,30,-20);
 		transform.eulerAngles = new Vector3 (-130, 0, -90);
-		//复位Step结构体，修复飞机坠毁后重新开始造成的转角不对bug
-		Step.step = 0;
+        transform.RotateAround(transform.position, new Vector3(0, 0, 1), InitRotation);
+        //复位Step结构体，修复飞机坠毁后重新开始造成的转角不对bug
+        Step.step = 0;
 		Step.d =0;
         LastInputAxis = 0;
         Manager.oncrash ();
